@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+  | 	
+  body.page
+    form(action="/article/save", method="post")
+      | Author
+      br
+      | 		  
+      input(type="text", name="author")
+      br
+      | 		  Title:
+      br
+      | 		  
+      input(type="text", name="title" value=title)
+      br
+      | 		  Description:
+      br
+      | 		  
+      input(type="text", name="description")
+      br
+      | 		  Tags:
+      br
+      | 		  
+      input(type="text", name="tags")
+      br
+      | 		  
+      input(type="submit", value="Submit")
