@@ -1,15 +1,16 @@
-doctype html
-html
-  head
-    link(rel="stylesheet", type="text/css", href="stylesheets/page.css")
+extends layout
+
+block content
   body.page
-    .newsapilink
-      a(href="https://newsapi.org/") Powered by NewsAPI
+    //.newsapilink
+    //  a(href="https://newsapi.org/") Powered by NewsAPI
     |       
-    |     
+    |   
+    div(style="text-align:center") #{status}  
     div(style="text-align:center")
-      form(action="article/getall", method="get")
-        button#shownewsbutton.button(type="submit") Show news!
+      form(action="articles", method="get")
+        button#shownArticleButton.button(type="submit") Show articles
+    div(style="text-align:center")
+      form(action="articles/add", method="get")
+        button#addArticleButton.button(type="submit") Add article
     |     
-    //script(type="text/javascript", src="index.js")
-    // 

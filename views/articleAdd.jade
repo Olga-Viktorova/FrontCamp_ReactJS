@@ -1,28 +1,25 @@
-doctype html
-html
-  head
-  | 	
-  body.page
-    form(action="/article/save", method="post")
-      | Author
-      br
-      | 		  
-      input(type="text", name="author")
-      br
-      | 		  Title:
-      br
-      | 		  
-      input(type="text", name="title" value=title)
-      br
-      | 		  Description:
-      br
-      | 		  
-      input(type="text", name="description")
-      br
-      | 		  Tags:
-      br
-      | 		  
-      input(type="text", name="tags")
-      br
-      | 		  
-      input(type="submit", value="Submit")
+link(rel='stylesheet', href='../stylesheets/articleAdd.css')
+.container
+  form#contact(action="save", method="post")
+    h3 Add Acticle
+    |     
+    h4 Contact us for custom quote
+    |     
+    fieldset
+      input(placeholder="Title", type="text", tabindex="1", required="", autofocus="", name="title")
+    |     
+    fieldset
+      input(placeholder="Author", type="text", tabindex="2", required="", name="author")
+    |     
+    fieldset
+      input(placeholder="Image link", type="url", tabindex="3", required="", name="imagelink")
+    |     
+    fieldset
+      input(placeholder="Article Limk", type="url", tabindex="4", required="", name="acticlelink")
+    |     
+    fieldset
+      textarea(placeholder="Description", tabindex="5", required="", name="description")
+    |     
+    fieldset
+      button#contact-submit(name="submit", type="submit", data-submit="...Sending") Submit
+    |     

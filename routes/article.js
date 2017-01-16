@@ -15,100 +15,59 @@ app.use(bodyParser.json())
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('test');
-});
-
-router.get('/getall', function (req, res) {
-	//res.render('test');
-
-	//let acticleList = db.test.find();
-	//var t = ArticleModel.find();
-	//var showArticles = require('../services/showArticles');
-	//res.send(t);
-	var View = require('./renderNews');
 	ArticleModel.find({}, function(err, articles) {
-
-	//var test = View.showPage(articles);
-	articles.forEach(function(news) {
-      var div = document.createElement('div');
-    	div.setAttribute("class", "row"); 
-   	 	ul.appendChild(div);
-             var li = document.createElement('div');
-             div.appendChild(li);
-             
-              var img = document.createElement('img');
-                 img.setAttribute("src", news.urlToImage);
-                 img.setAttribute("class", "img");
-                 li.appendChild(img);
-
-             var strong = document.createElement('strong');
-             li.appendChild(strong);
-
-                 var a = document.createElement('a');
-                 a.setAttribute("href", news.urlToImage);
-                 a.setAttribute("class", "link");
-                 a.innerHTML  = news.description;
-                 strong.appendChild(a);
-                
-                
-                 var p = document.createElement('p');
-                 li.appendChild(p);
-                 var node = document.createTextNode(news.title);
-                 p.appendChild(node);
-
-                 var publishedAt = document.createElement('div')
-                 publishedAt.innerHTML = "Publish at: " + news.publishedAt;
-                 li.appendChild(publishedAt);
-
-                 var publishedAt = document.createElement('div')
-                 publishedAt.innerHTML = "By: " + news.author;
-                 li.appendChild(publishedAt); 
-
-      res.send(div);
-    });
-
-    //res.render('article', { articleList: articles });  
-    
+ 		res.render('articles', { articles: articles });
+ 	});
 });
 
-
-
-
-});	
 
 router.get('/add', function(req, res, next) {
-  res.render('article');
-  //console.log(req.body.author);
-
+  res.render('article', {article: new ArticleModel()});
 });
 
 router.post('/save', function (req, res) {
-
-var articleModel = new ArticleModel ({
+if (req.body.id){
+	ArticleModel.update({ _id: req.body.id },
+	 { $set: { 
+	 	author: req.body.author,
+		title: req.body.title,
+		description: req.body.description,
+		tags: req.body.tags,
+  		update_at: Date.now() 
+  	}},  function(err, doc){
+    		if (err) return res.send(500, { error: err });
+  	 			res.render('statusArticle', {status: 'Article was updated successfully !'});
+  	 		});
+}else{
+	var articleModel = new ArticleModel ({
 	author: req.body.author,
 	title: req.body.title,
 	description: req.body.description,
   	tags: req.body.tags,
   	created_at: Date.now(),
 })
-
-articleModel.save(function(error){ 
-	if(error){
-		res.send(error); 
+	articleModel.save(function(error){ 
+		if(error){
+			res.send(error); 
 		} else{ 
-			res.send('Article was added successfully ');
-			}
-		}); 
+			res.render('statusArticle', {status: 'Article was added successfully !'});
+		}
+	}); 
+}
 
 });
 
-
 router.get('/update', function(req, res, next) {
-  res.render('article', { title: 'titke' });
+	ArticleModel.findOne({ _id: req.query.id}, function (err, doc){
+		res.render('articleUpdate', { article: doc });
+	});	
 });
 
 router.get('/delete', function(req, res, next) {
-  res.render('article', { title: 'titke' });
+  ArticleModel.findByIdAndRemove(req.query.id, function (err, todo) {  
+  if (err) return res.send(500, { error: err });
+  	 res.render('statusArticle', {status: 'Article: ' + req.query.id + 'was updated successfully !'});
+  	 		});
 });
 
 module.exports = router;

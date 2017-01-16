@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  body.page
+    //.newsapilink
+    //  a(href="https://newsapi.org/") Powered by NewsAPI
+    |       
+    |   
+    div(style="text-align:center") #{status}  
+    div(style="text-align:center")
+      form(action="/articles", method="get")
+        button#shownewsbutton.button(type="submit") Show news!
+    |     
