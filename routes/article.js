@@ -32,6 +32,8 @@ if (req.body.id){
 	 	author: req.body.author,
 		title: req.body.title,
 		description: req.body.description,
+		imagelink: req.body.imagelink,
+		acticlelink: req.body.acticlelink,
 		tags: req.body.tags,
   		update_at: Date.now() 
   	}},  function(err, doc){
@@ -43,6 +45,8 @@ if (req.body.id){
 	author: req.body.author,
 	title: req.body.title,
 	description: req.body.description,
+	imagelink: req.body.imagelink,
+	acticlelink: req.body.acticlelink,
   	tags: req.body.tags,
   	created_at: Date.now(),
 })
