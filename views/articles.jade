@@ -1,6 +1,7 @@
 link(rel='stylesheet', href='stylesheets/news.css')
 block content
 body.page
+	.login #{user.username}
 	div(style="text-align:center")
 		form(action="articles/add", method="get")
 			button#addArticleButton.button(type="submit") Add article

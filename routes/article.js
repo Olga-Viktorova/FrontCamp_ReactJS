@@ -16,13 +16,13 @@ app.use(bodyParser.json())
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	ArticleModel.find({}, function(err, articles) {
- 		res.render('articles', { articles: articles });
+ 		res.render('articles', { articles: articles, user: req.user });
  	});
 });
 
 
 router.get('/add', function(req, res, next) {
-  res.render('article', {article: new ArticleModel()});
+  res.render('article', {article: new ArticleModel(), user: req.user });
 });
 
 router.post('/save', function (req, res) {

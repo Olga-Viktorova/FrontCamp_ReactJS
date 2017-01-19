@@ -68,3 +68,9 @@ div.inline {
     float:right;
     display: inline-block;
  }
+ .login {
+    font-size: 25px;   
+    margin: 5px;
+    float: right;
+    position:absolute;
+ }

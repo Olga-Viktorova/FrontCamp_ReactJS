@@ -1,23 +1,27 @@
-var mongoose = require('../mongooseConf');
+'use strict';
 
-var userSchema = new mongoose.Schema({ 
-	name: String,
-	email: String,
-	password: String
+/**
+ * Module dependencies.
+ */
+//var log            = require('winston-wrapper')(module);
+//var mongoose= require('mongoose');
+var mongoose = require('../mongooseConf');
+// End of dependencies.
+
+
+var UserSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  books: []
 });
 
-var UserModel = mongoose.model("User", userSchema);
+var User = mongoose.model('user', UserSchema);
 
-module.exports = UserModel;
-
-
-/*var someAuthor = new UserModel ({name: "Pavel"});
-
-someAuthor.save(function(error){ 
-	if(error){
-		console.log(error); 
-		} else{ 
-			console.log(someAuthor); 
-			}
-		}); 
-		*/
+module.exports = User;

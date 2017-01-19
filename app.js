@@ -24,6 +24,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//app.use(express.cookieParser());
+//app.use(express.bodyParser());
+var expressSession = require('express-session');
+app.use(expressSession({secret: 'mySecretKey'}));
+ 
+// Passport:
+var passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/articles', article);
 app.use('/', index);
 

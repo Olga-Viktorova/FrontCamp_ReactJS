@@ -1,19 +1,4 @@
 link(rel='stylesheet', href='stylesheets/news.css')
 block content
 body.page
-	mixin show-article(article)
-		.article
-			img.img(src= article.imagelink)
-			//h3= article
-			a.link(href= article.acticlelink) #{article.title}    
-			h4 #{article.description}
-			h4 Publish at: #{article.created_at}
-			h4 By: #{article.author}
-
-	.header
-		img.logo(src="images/bbc_news_logo.png")     
-	.articles
-		for article in articles
-			+show-article(article)
-
-
+a(href="./registar/") #{user}
