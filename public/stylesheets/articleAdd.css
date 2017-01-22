@@ -148,7 +148,7 @@ fieldset {
 
  .login {
     font-size: 25px;   
-    margin: 5px;
-    float: right;
-    position:absolute;
+    margin: 15px;
+    text-align: right;
+    color: black;
  }

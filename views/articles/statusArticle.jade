@@ -1,9 +1,11 @@
-extends layout
+extends ./../layout
+
 
 block content
+  link(rel='stylesheet', href='../stylesheets/articleAdd.css')
   body.page
-    //.newsapilink
-    //  a(href="https://newsapi.org/") Powered by NewsAPI
+  .login #{user.username}
+    include ./../user/logout
     |       
     |   
     div(style="text-align:center") #{status}  

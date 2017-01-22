@@ -23,7 +23,7 @@
 }
 
 .img{
-    width: 5%;
+    width: 10%;
     float: left;
     padding: 5px;
 }
@@ -65,12 +65,10 @@
 }
 
 div.inline {
-    float:right;
     display: inline-block;
  }
  .login {
     font-size: 25px;   
-    margin: 5px;
-    float: right;
-    position:absolute;
+    margin: 15px;
+    text-align: right;
  }

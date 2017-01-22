@@ -1,18 +1,12 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-//var log            = require('winston-wrapper')(module);
-var config         = require('nconf');
-
-var passport = require('passport');
-var LocalStrategy  = require('passport-local').Strategy;
-var mongoose = require('../../mongooseConf');
-var User = require('../../models/user');
+var config            = require('nconf');
+var passport          = require('passport');
+var LocalStrategy     = require('passport-local').Strategy;
+var mongoose          = require('../../mongooseConf');
+var User              = require('../../models/user');
 
 
-// End of dependencies.
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
@@ -28,11 +22,9 @@ passport.use(new LocalStrategy({
     });
   }));
 
-
   passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
-
 
   passport.deserializeUser(function(id, done) {
     User.findById(id, function(err,user){
@@ -44,8 +36,6 @@ passport.use(new LocalStrategy({
 
 
 module.exports = function(req, res, next) {
-
-  //log.info('someone trying to login');
 
   passport.authenticate('local',
     function(err, user, info) {
@@ -61,6 +51,5 @@ module.exports = function(req, res, next) {
           : res.redirect('/fail');
     }
   )(req, res, next);
-
     
 };

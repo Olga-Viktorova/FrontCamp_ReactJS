@@ -1,13 +1,6 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-//var log            = require('winston-wrapper')(module);
-//var mongoose= require('mongoose');
 var mongoose = require('../mongooseConf');
-// End of dependencies.
-
 
 var UserSchema = new mongoose.Schema({
   username: {

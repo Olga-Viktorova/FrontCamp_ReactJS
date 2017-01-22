@@ -1,16 +1,7 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-//var log            = require('winston-wrapper')(module);
-//var config         = require('nconf');
-var mongoose = require('../../mongooseConf');
-var User = require('../../models/user');
-//var User = require('mongoose').model('user');
-
-// End of dependencies.
-
+var mongoose  = require('../../mongooseConf');
+var User      = require('../../models/user');
 
 module.exports = function(req, res, next) {
   var user = new User({ username: req.body.email, password: req.body.password});

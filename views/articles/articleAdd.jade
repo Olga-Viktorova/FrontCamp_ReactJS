@@ -1,5 +1,6 @@
 link(rel='stylesheet', href='../stylesheets/articleAdd.css')
 .login #{user.username}
+include ./../user/logout
 .container
   form#contact(action="save", method="post")
     h3 Add Acticle
@@ -22,5 +23,5 @@ link(rel='stylesheet', href='../stylesheets/articleAdd.css')
       textarea(placeholder="Description", tabindex="5", required="", name="description")
     |     
     fieldset
-      button#contact-submit(name="submit", type="submit", data-submit="...Sending") Add
+      button#contact-submit(name="submit", type="submit", data-submit="...Sending") Submit
     |     
