@@ -2,8 +2,8 @@ var express 				= require('express');
 var router 					= express.Router();
 var user 					= require('../models/user')
 
-var requireTree 			= require('require-tree');
-var controllers 			= requireTree('../controllers');
+//var requireTree 			= require('require-tree');
+//var controllers 			= requireTree('../controllers');
 var mustAuthenticatedMw 	= require('../middlewares/must-authenticated');  
 
 router.get('/', function(req, res, next) {
