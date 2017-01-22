@@ -10,13 +10,41 @@ router.get('/', function(req, res, next) {
 	res.render('index');
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('user/login');
+});
+
+router.get('/register', function(req, res, next) {
+  res.render('user/register');
+});
+
+router.get('/fail', function(req, res, next) {
+  res.render('fail');
+});
+
+router.post('/login', function(req, res, next) {
+	var login = require('../controllers/users/login');
+    login(req, res, next);
+});
+
+router.post('/register',  function(req, res, next) {
+	var register = require('../controllers/users/register');
+	register(req, res, next);
+});
+
+router.get('/logout', function(req, res) {
+	var logout = require('../controllers/users/logout');
+	logout(req, res);
+});
+
   // Basic routes
-router.get('/login', 	       controllers.render('user/login'));
+/*router.get('/login', 	       controllers.render('user/login'));
 router.get('/register', 	   controllers.render('user/register'));
 router.get('/fail',            controllers.render('fail'));
 
 router.post('/login', 		   controllers.users.login);
 router.post('/register', 	   controllers.users.register);
-router.get('/logout', 		   controllers.users.logout);
+router.get('/logout', 		   controllers.users.logout);*
+*/
 
 module.exports = router;
