@@ -5,16 +5,22 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var routes = require('./routes');
+
 var index = require('./routes/index');
 var article = require('./routes/article');
 
+var reactViews = require('express-react-views');
 
 var app = express();
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('view engine', 'jade');
+
+app.set('view engine', 'jsx');
+app.engine('jsx', reactViews.createEngine());
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -35,6 +41,8 @@ var passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
+//app.get('/', routes.index);
+
 app.use('/articles', article);
 app.use('/', index);
 
@@ -54,7 +62,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  //res.render('error');
+  res.send(err.message);
 });
 
 

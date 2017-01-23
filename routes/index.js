@@ -1,6 +1,7 @@
 var express 				= require('express');
 var router 					= express.Router();
 var user 					= require('../models/user')
+var ArticleModel 		= require('../models/article');
 
 //var requireTree 			= require('require-tree');
 //var controllers 			= requireTree('../controllers');
@@ -37,6 +38,7 @@ router.get('/logout', function(req, res) {
 	logout(req, res);
 });
 
+
   // Basic routes
 /*router.get('/login', 	       controllers.render('user/login'));
 router.get('/register', 	   controllers.render('user/register'));
@@ -48,3 +50,8 @@ router.get('/logout', 		   controllers.users.logout);*
 */
 
 module.exports = router;
+// exports.index = function(req, res){
+	// ArticleModel.find({}, function(err, articles) {
+ 	// res.render('index', { articles: articles, user: req.user, title: 'test' });
+	 // });
+// };
