@@ -1,10 +1,10 @@
 import React from 'react';
 import Layout from './../layout';
 
-class Login extends React.Component {
-	render() {
-    return (
-		<Layout>
+var Login = React.createClass({
+    render: function() {
+        return (
+            <Layout>
 			<h4>Login to your account</h4>
 				<link rel="stylesheet" href="../stylesheets/articleAdd.css"/>
 				<div className="container">
@@ -23,8 +23,8 @@ class Login extends React.Component {
 					</form>
 				</div>	
 		</Layout>
-    );
-  }
-}
+        );
+    }
+});
 
 module.exports = Login;

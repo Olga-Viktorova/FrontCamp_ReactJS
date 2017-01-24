@@ -3,7 +3,11 @@ var router 				= express.Router();
 var ArticleModel 		= require('../models/article');
 var mustAuthenticatedMw = require('../middlewares/must-authenticated');  
 var bodyParser 			= require('body-parser')
+
+var React 				= require('react');
+var ReactDOMServer 		= require('react-dom/server'); 
  
+
 var app = express()
  
 // parse application/x-www-form-urlencoded 
@@ -15,9 +19,17 @@ app.use(bodyParser.json())
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+ 	var ArticlesComponent = require('./../views/articles/articlesServerRender.jsx'); 
+	var ArticlesComponentFactory = React.createFactory(ArticlesComponent);
+
 	ArticleModel.find({}, function(err, articles) {
- 		res.render('articles/articles', { articles: articles, user: req.user });
- 	});
+		const articlesRender = ReactDOMServer.renderToString(ArticlesComponentFactory({ articles: articles, user: req.user}));
+		res.send(articlesRender);
+ 	 });
+
+	// ArticleModel.find({}, function(err, articles) {
+ 	// 	res.render('articles/articles', { articles: articles, user: req.user });
+ 	// });
 });
 
 router.get('/add', mustAuthenticatedMw, function(req, res, next) {
