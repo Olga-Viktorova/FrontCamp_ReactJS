@@ -1,7 +1,15 @@
+//import  renderToString  from 'react-dom/server';
+
 var express 				= require('express');
 var router 					= express.Router();
-var user 					= require('../models/user')
+var user 						= require('../models/user')
 var ArticleModel 		= require('../models/article');
+var React 					= require('react');
+var ReactDomServer 	= require('react-dom/server'); 
+var App 						= require('./../views/log.jsx');
+var template  						= require('./../views/template.jsx');
+
+//import { renderToString } from 'react-dom/server';
 
 //var requireTree 			= require('require-tree');
 //var controllers 			= requireTree('../controllers');
@@ -12,7 +20,22 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('user/login');
+	// var html = ReactDomServer.renderToString(
+	// 	React.createElement(log)
+	// )
+	// res.send(html);
+
+ // res.render('user/login');
+
+  const isMobile = true;
+  const initialState = { isMobile };
+  const appString =ReactDomServer.renderToString(<App {...initialState} />);
+
+  res.send(template({
+    body: appString,
+    title: 'Hello World from the server',
+    initialState: JSON.stringify(initialState)
+  }));
 });
 
 router.get('/register', function(req, res, next) {
