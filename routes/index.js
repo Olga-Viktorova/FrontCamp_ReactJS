@@ -1,18 +1,14 @@
-//import  renderToString  from 'react-dom/server';
+require('babel-register')({
+	presets: ['react']
+});
 
 var express 				= require('express');
 var router 					= express.Router();
 var user 						= require('../models/user')
 var ArticleModel 		= require('../models/article');
 var React 					= require('react');
-var ReactDomServer 	= require('react-dom/server'); 
-var App 						= require('./../views/log.jsx');
-var template  						= require('./../views/template.jsx');
+var ReactDOMServer 	= require('react-dom/server'); 
 
-//import { renderToString } from 'react-dom/server';
-
-//var requireTree 			= require('require-tree');
-//var controllers 			= requireTree('../controllers');
 var mustAuthenticatedMw 	= require('../middlewares/must-authenticated');  
 
 router.get('/', function(req, res, next) {
@@ -20,22 +16,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-	// var html = ReactDomServer.renderToString(
-	// 	React.createElement(log)
-	// )
-	// res.send(html);
+		//Server side render
+	var LoginComponent = require('./../views/user/loginServerRender.jsx'); 
+	var LoginComponentFactory = React.createFactory(LoginComponent);
 
- // res.render('user/login');
-
-  const isMobile = true;
-  const initialState = { isMobile };
-  const appString =ReactDomServer.renderToString(<App {...initialState} />);
-
-  res.send(template({
-    body: appString,
-    title: 'Hello World from the server',
-    initialState: JSON.stringify(initialState)
-  }));
+	const login = ReactDOMServer.renderToString(LoginComponentFactory());
+  res.send(login);
 });
 
 router.get('/register', function(req, res, next) {
