@@ -1,7 +1,3 @@
-require('babel-register')({
-	presets: ['react']
-});
-
 var express 				= require('express');
 var router 					= express.Router();
 var user 						= require('../models/user')

@@ -1,5 +1,5 @@
-import React from 'react';
-import Layout from './../layout';
+var React = require('react');
+var Layout = require('./../layout');
 
 var Login = React.createClass({
     render: function() {
